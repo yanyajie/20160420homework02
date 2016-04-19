@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+    Array.prototype.mySlice = function (n, m) {
+        Array.prototype.constructor = Array;
+        var res = [];
+        for (var i = 0; i < arguments.length; i++) {
+            //判断是不是有效数字:
+            if (isNaN(arguments[i])) {
+                arguments[i] = 0;
+            } else {
+                arguments[i] = Number((arguments[i]));
+            };
+
+            //判断如果传入的形参是负数:
+            if (arguments[i] < 0) {
+                for (var i = arguments[i] + this.length; i < this.length; i++) {
+                    res[res.length] = this[i];
+                };
+                return res;
+            };
+
+            //判断传入参数的三种情况:
+            if (arguments.length == 0) {
+                return ary;
+            } else if (arguments.length == 1) {
+                for (var i = n; i < this.length; i++) {
+                    res[res.length] = this[i];
+                };
+                return res;
+            } else {
+                if (arguments[i] > this.length) {
+                    res = [];
+                } else {
+                    for (var i = n; i < m; i++) {
+                        res[res.length] = this[i];
+                    };
+                };
+            };
+        };
+        return res;
+    };
+    var ary = [1, 2, 3, 4, 5, 5, 5];
+    var res = ary.mySlice(2, 5);
+    console.log(ary);
+    console.log(res);
+</script>
+</body>
+</html>

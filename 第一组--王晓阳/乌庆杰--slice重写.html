@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>slice重写</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    Array.prototype.myslice = function () {
+        var res = [];
+        for (var i = 0; i < arguments.length; i++) {
+            //如果传的是非有效数字,让参数=0
+            if (isNaN(arguments[i])) {
+                arguments[i] = 0;
+            } else {
+                arguments[i] = Number(arguments[i]);
+                if (arguments[i] < 0) {//如果实参是负数,加上length
+                    arguments[i] = arguments[i] + this.length;
+                }
+            }
+        }
+        //如果传递的实参大于数字的length
+        if (arguments[0] > this.length) {
+            return res;
+        } else {
+            //判断传几个参数,对应的操作
+            if (arguments.length == 0) {
+                return this;
+            } else if (arguments.length == 1) {
+                //res = this.splice(arguments[0]);
+                for (var j = arguments[0]; j < this.length; j++) {
+                    res[res.length] = this[j];
+                }
+                return res;
+            } else {
+                if (arguments[0] < arguments[1]) {
+                    //res = this.splice(arguments[0], arguments[1] - arguments[0]);
+                    for (var j = arguments[0]; j < arguments[1]; j++) {
+                        res[res.length] = this[j];
+                    }
+                    return res;
+                } else {
+                    return res;
+                }
+            }
+        }
+        return res;
+    };
+    var ary = [1, 2, 3, 4, 5, 6, 7, 8];
+    var res = ary.myslice("-5", "3px");
+    console.log(ary);
+    console.log(res);
+
+</script>
