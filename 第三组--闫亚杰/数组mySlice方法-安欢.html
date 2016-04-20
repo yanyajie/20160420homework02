@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    Array.prototype.mySlice = function (n, m) {
+ //debugger;
+        var ary = [];
+        n=Number(n);
+        m=Number(m);
+        if (arguments.length == 0) {//没传参数的时候
+            n = 0;
+            m = this.length;
+        } else if (arguments.length == 1) {//一个参数的时候
+            m = this.length;
+        }
+        if (isNaN(n)) {//n为有效数字
+            n = 0;
+        }
+        if (-(this.length)<=n < 0) {//n小于0的时候
+            n =this.length +n;
+        }else if(n<-(this.length)){
+            n=0;
+        }
+        if(n>this.length){
+            m=this.length;
+        }
+        if(isNaN(m)){
+            m=0;
+        }
+        if (m < 0) {//m小于0的时候
+           m = this.length + m;
+        }
+        if (m > this.length) {//m的长度超过数组的长度
+            m = this.length;
+        }
+            if(n>m){
+                return ary;
+            }else{
+            for (var i = n; i < m; i++) {
+                ary.push(this[i])
+            }
+            return ary;
+        }
+    }
+    var ary = [12,23,6,7,8,1,3,2];
+    console.log(ary.mySlice('-11px',60));
+    console.log(ary.slice("-11px",60));
+</script>
+</body>
+</html>

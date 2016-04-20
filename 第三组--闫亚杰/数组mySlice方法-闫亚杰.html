@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var ary = [1,2,3,4,9,43,3,23];
+    /**
+     * 完全仿写数组slice方法
+     *
+     * @param n 从索引n开始
+     * @param m 到索引m不包含m
+     * @returns {Array}  返回值
+     */
+    Array.prototype.myslice = function myslice(n,m){
+        var ary=[];
+        /*switch (n){  //这个方法写不出来..???
+            case undefined:
+                n=0;
+                break;
+            case n<0:
+                return ary;
+                break;
+        }*/
+        /*switch (m){
+            case undefined:
+                m=this.length;
+                break;
+            case m<0:
+                m=this.length-Math.abs(m);
+                break;
+            case m>this.length:
+                m=this.length;
+                break;
+        }*/
+        if(arguments.length == 0){//没有参数的时候
+            n=0;
+            m=this.length;
+        }else if(arguments.length == 1){//一个参数的时候
+            m=this.length;
+        }
+        if(n<0){//n小于0的时候
+            //return ary;
+            n=this.length+n;
+        }
+        if(Math.abs(n)>this.length){//n为负数并小于length的时候
+            n=0
+        }
+        if(m>this.length){//m参数大于原有数组长度的时候
+            m=this.length;
+        }
+        if(m<0){//m为负数的时候
+            m=this.length-Math.abs(m);
+        }
+        if(n>m){
+            return ary;
+        }
+        for(var i=n;i<m;i++){
+            ary[ary.length]=this[i];
+        }
+        return ary;
+    };
+    console.log(ary.myslice(1,5));
+    console.log(ary.slice(1,5));
+
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>mySlice</title>
+</head>
+<body>
+<script type="text/javascript">
+    Array.prototype.mySlice=function(n,m){
+        var ary=[];
+        n=Number(n);
+        m=Number(m);
+        n=n||0;
+        m=m||this.length;
+        if(-this.length<n<0){
+            n=this.length+Math.ceil(n);
+        }else if(Math.abs(n)>this.length){
+            n=0;
+        } else{
+            n=Math.floor(n);
+        }
+        if(m<0){
+            m=this.length+m;
+        }
+        if(m>this.length){
+            m=this.length;
+        }
+        if(m<n){
+            return ary;
+        }else{
+            for(var i=n;i<m;i++){
+                ary[ary.length]=this[i];
+            }
+            return ary;
+        }
+
+    }
+    var arr=[1,2,3,4,5,6,7,8];
+    var arr1=arr.mySlice(-11,11);
+    console.log(arr.slice(-11,11));
+    console.log(arr1);
+</script>
+
+
+
+</body>
+</html>

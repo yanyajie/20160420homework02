@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    Array.prototype.mySlice = function(n,m){
+    var ary = [];
+    n = n||0;
+    m = m||this.length;
+    n < 0 ? n = this.length+Math.ceil(n):n = Math.floor(n);
+    m < 0 ? m = this.length+m:null;
+    m > this.length ? m = this.length:null;
+    n > this.length ? n = this.length:null;
+    n < 0||isNaN(n)? n = 0:null;
+    if (m<n){
+        return ary;
+    }else{
+        for(var i=n;i<m;i++){
+            ary[ary.length]=this[i];
+        }
+        return ary;
+    }
+    };
+var ary=[12,3,45,6,22,43,8,10,2,9,7];
+    console.log(ary.mySlice(3,5));
+    console.log(ary.mySlice(-3,5));
+    console.log(ary.mySlice(3,-5));
+    console.log(ary.mySlice(0));
+    console.log(ary.mySlice());
+    console.log(ary.mySlice("a",5));
+    console.log(ary.mySlice(3,20));
+    console.log(ary.mySlice(20,-5));
+
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    Array.prototype.mySlice = function (m, n) {
+//               debugger;
+                var arr = [];
+                if ((Number(m) < 0 && Number(n) >0)){
+                    if (Number(n) > (Number(m) + this.length)) {
+                        for (var i = n + this.length; i < n - m - this.length+1; i++) {
+                            arr[arr.length] = ary[i];
+                        }
+                    }
+                    if (Number(n) < Number(m) + this.length){
+                        var hh = m;
+                        m = n;
+                        n = hh;
+                        for (var i = m + this.length; i < n - m - this.length+1; i++) {
+                             arr[arr.length] = ary[i];
+                        }
+                    }
+                }
+               else if (Number(m) < 0 && (Number(n) < 0)) {
+                    if ((Number(n) + this.length) > (Number(m) + this.length)) {
+                        for (var i = m + this.length; i < n - m+1 ; i++) {
+                            arr[arr.length] = ary[i];
+                        }
+                    }
+                    if (Number(n)+ this.length < Number(m) + this.length){
+                        var ba = m;
+                        m = n;
+                        n = ba;
+                        for (var i = m + this.length; i < n - m +1; i++) {
+                            arr[arr.length] = ary[i];
+                        }
+                    }
+                }
+       else if ((Number(m) < 0 && Number(n) ===0)){
+           var ss=m;
+                m=n;
+                n=ss;
+          for(var i=0;i<n+this.length;i++){
+               arr[arr.length] = ary[i];
+           }
+                }
+        else if ((Number(m) === 0 && Number(n)<0)){
+
+                    var n =n+this.length;
+                    for(var i=0;i<n;i++){
+                        arr[arr.length] = ary[i];
+                    }
+                }
+
+        else if (Number(m) < 0 && (Number(n) < 0)) {
+            if ((Number(n) + this.length) > (Number(m) + this.length)) {
+                for (var i = m + this.length; i < n - m+1 ; i++) {
+                    arr[arr.length] = ary[i];
+                }
+            }
+            if (Number(n)+ this.length < Number(m) + this.length){
+                var ba = m;
+                m = n;
+                n = ba;
+                for (var i = m + this.length; i < n - m +1; i++) {
+                    arr[arr.length] = ary[i];
+                }
+            }
+        }
+                else if ((Number(m) === 0 && n === undefined) || m === undefined) {
+                    for (var i = 0; i < ary.length; i++) {
+                        arr[arr.length] = ary[i];
+                    }
+
+                }
+                else if (Number(m) <Number(n)) {
+                    for (var j = m; j < (n - m) + 1; j++) {
+                        arr[arr.length] = ary[j];
+                    }
+                }
+                else if (Number(m) > Number(n)) {
+                    var temp = m;
+                    m = n;
+                    n = temp;
+                    for (var k = m; k < (n - m) + 1; k++) {
+                        arr[arr.length] = ary[k];
+                    }
+                }
+
+                return arr
+            };
+    var ary = [1, 2, 3, 4, 5];
+    console.log(ary.mySlice(-4, -1));
+    console.log(ary.mySlice(-1, -4));
+    console.log(ary.mySlice(-1,0));
+    console.log(ary.mySlice(0,-1));
+    console.log(ary.mySlice(0));
+    console.log(ary.mySlice(1,4));
+    console.log(ary.mySlice(4,1));
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var array = [1,2,3,4,9,43,3,23];
+    Array.prototype.heyanslice= function (n,m){
+        if(n==undefined && m==undefined){//没传参数的情况
+            return this;
+        }
+        if(m==undefined){//参数m没传的时候
+            m=this.length-1;
+        }
+        if(n>m){//如果n大于m的情况 &&(n<0&&m<0)||(n>0&&m>0)？？
+            if(n<0&&m<0){
+                return []
+            }
+            if(n>0&&m>0){
+                return []
+            }
+        }
+        if(n<0){//n未负数的情况
+            n=this.length+n
+        }else{n=n};
+        if(m<0){//m为负数的情况
+            m=this.length+m
+        }else{m=m};
+        if(m>this.length){//m大于数组长度的情况
+            m=this.length
+        }
+        var ary = [];
+        for(var i=n;i<m;i++){
+            ary.push(this[i]);
+        }
+        return ary;
+    };
+    console.log(array.heyanslice(1,9));
+
+    var arry = [1,2,3,4,9,43,3,23];
+    console.log(arry.slice(1,9))
+</script>
+</body>
+</html>
